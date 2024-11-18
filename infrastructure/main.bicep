@@ -1,17 +1,22 @@
-@allowed(['dev', 'prod'])
-param environment string
- 
- targetScope = 'resourceGroup'
+    @allowed(['dev', 'prod'])
+    param environment string
 
- module appService './appservice.bicep' = {
-  name: 'appservice'
-  params: {
-    appName: 'workshop-dnazghbicep-mcpanthers22-${environment}'
-    location: 'centralus'
-    environment:environment
-  }
-}
- module keyvault './keyvault.bicep' = {
+    var location = 'centralus'
+    var myName = 'mcpanthers22'
+    var appNameWithEnvironment = 'workshop-dnazghbicep-${myName}-${environment}'
+
+    targetScope = 'resourceGroup'
+
+    module appService './appservice.bicep' = {
+      name: 'appservice'
+      params: {
+        appName: appNameWithEnvironment
+        environment: environment
+        location: location
+      }
+    }
+
+    module keyvault './keyvault.bicep' = {
       name: 'keyvault'
       params: {
         appId: appService.outputs.appServiceInfo.appId
