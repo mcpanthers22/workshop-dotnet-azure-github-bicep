@@ -52,7 +52,7 @@
           // Myself - normally you wouldn't put a user here, you'd use a Group all the developers are in
           {
             tenantId: subscription().tenantId
-            objectId: 3b7e8769-f70b-4bc2-ab75-913b0979677c
+            objectId: '3b7e8769-f70b-4bc2-ab75-913b0979677c'
             permissions: {
                 keys: [
                     'get'
